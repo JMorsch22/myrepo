@@ -1,5 +1,5 @@
 # myrepo
-[![CircleCI](https://circleci.com/gh/noahgift/myrepo.svg?style=svg)](https://circleci.com/gh/noahgift/myrepo)
+[![CircleCI](https://circleci.com/gh/JMorsch22/myrepo.svg?style=svg)](https://circleci.com/gh/JMorsch22/myrepo)
 
 I deleted some videos from the forked project, but kept the remaining text.
 
