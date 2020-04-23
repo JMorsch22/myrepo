@@ -9,4 +9,3 @@ flask
 requests
 pandas_datareader
 yfinance
-matplotlib
