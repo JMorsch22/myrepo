@@ -1,5 +1,5 @@
-# myrepo
-[![CircleCI](https://circleci.com/gh/JMorsch22/myrepo.svg?style=svg)](https://circleci.com/gh/JMorsch22/myrepo)
+# tax_loss_harvesting
+[![CircleCI](https://circleci.com/gh/JMorsch22/tax_loss_harvesting.svg?style=svg)](https://circleci.com/gh/JMorsch22/tax_loss_harvesting)
 
 I deleted some videos from the forked project, but kept the remaining text.
 
