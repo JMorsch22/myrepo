@@ -7,11 +7,11 @@
 import yfinance as yf
 from pandas_datareader import data as pdr
 import pandas as pd
-import datetime as dt
+#import datetime as dt
 import numpy as np
-from itertools import islice
-import urllib
-import dateutil
+#from itertools import islice
+#import urllib
+#import dateutil
 import matplotlib.pyplot as plt
 
 
@@ -43,7 +43,7 @@ sp_500_data.info()
 # In[6]:
 
 
-sp_500_data.Symbol
+#sp_500_data.Symbol
 
 
 # In[7]:
@@ -133,7 +133,7 @@ returns = np.log(am_df)-np.log(am_df.shift(ROLLING_PERIOD))
 # In[82]:
 
 
-returns.iloc[ROLLING_PERIOD:].corr()['BLK']
+#returns.iloc[ROLLING_PERIOD:].corr()['BLK']
 
 
 # In[110]:
@@ -146,7 +146,7 @@ returns.rolling(ROLLING_PERIOD).corr()
 
 
 def multi_period_return(period_returns):
-     return np.prod(period_returns + 1) - 1
+    return np.prod(period_returns + 1) - 1
 
 
 # In[208]:
@@ -170,7 +170,7 @@ r[["BLK",'IVZ','AMG','BK','NTRS']].iloc[21:51].corr()
 # In[226]:
 
 
-df_corrs.head()
+
 
 
 # In[214]:
@@ -183,7 +183,7 @@ r[["BLK",'IVZ','AMG','BK','NTRS']].plot()
 
 
 df_corrs = pr['BLK']        .rolling(window=22, min_periods=22)        .corr(other=pr['AMG'])        .dropna()
-
+df_corrs.plot()
 
 # In[142]:
 
@@ -218,7 +218,7 @@ for ticker in ["BLK",'IVZ','AMG','BK','NTRS']:
     temp = r['BLK']        .rolling(window=30, min_periods=30)        .corr(other=r[ticker])        .dropna()
     df_corrs[ticker]=temp
     
-
+df_corrs.head()
 
 # In[220]:
 
