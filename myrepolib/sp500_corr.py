@@ -12,7 +12,7 @@ import numpy as np
 #from itertools import islice
 #import urllib
 #import dateutil
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
 
 # In[2]:
