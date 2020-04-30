@@ -1,6 +1,6 @@
 from flask import Flask
 from flask import jsonify
-from flask_jsonpify import jsonpify
+#from flask_jsonpify import jsonpify
 import yfinance as yf
 from pandas_datareader import data as pdr
 #import pandas as pd
