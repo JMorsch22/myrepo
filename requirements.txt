@@ -9,3 +9,4 @@ flask
 requests
 pandas_datareader
 yfinance
+google-cloud-storage
