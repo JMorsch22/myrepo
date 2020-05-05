@@ -1,0 +1,6 @@
+cron:
+- description: "update every 24 hours"
+  url: /update/gs
+  schedule: every 24 hours
+
+
