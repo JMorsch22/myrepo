@@ -7,6 +7,7 @@ import datetime
 import tempfile
 from google.cloud import storage
 from google.cloud.storage import Blob
+from google.cloud import bigquery
 import yfinance as yf
 import pandas as pd
 from pandas_datareader import data as pdr
@@ -15,14 +16,14 @@ yf.pdr_override()
 
 def download(TICKER, destdir):
    '''
-     Downloads on-time performance data and returns local filename
+     Downloads stock data and returns local filename
      YEAR e.g.'2015'
      MONTH e.g. '01 for January
    '''
    logging.info('Requesting data for {}-*'.format(TICKER))
 
    csvfile = os.path.join(destdir, "{}.csv".format(TICKER))
-   response = pdr.get_data_yahoo(TICKER, end='2020-05-01') # download historical data from yahoo start='2019-01-01'
+   response = pdr.get_data_yahoo(TICKER) # download historical data from yahoo start='2019-01-01'
    response.dropna(inplace=True)
    response.to_csv(csvfile, index=True, header=True)
    logging.debug("{} saved".format(csvfile))
@@ -35,9 +36,22 @@ def upload(csvfile, bucketname, blobname):
    blob.upload_from_filename(csvfile)
    gcslocation = 'gs://{}/{}'.format(bucketname, blobname)
    logging.info('Uploaded {} ...'.format(gcslocation))
-
-   
    return gcslocation
+
+def storage_to_bq():
+    client = bigquery.Client()
+    gcslocation = 'gs://tax-loss-harvesting.appspot.com/stocks/ohlc/nflx.csv'
+    #table_id = client.get_table("tax-loss-harvesting.stock_data.nflx")
+    table_ref = client.dataset("stock_data").table("nflx")
+    
+    job_config = bigquery.LoadJobConfig()
+    job_config.skip_leading_rows = 1
+    job_config.sorce_format = bigquery.SourceFormat.CSV
+    job_config.write_disposition = bigquery.WriteDisposition.WRITE_APPEND
+    uri = gcslocation #"gs://tax-loss-harvesting.appspot.com/stocks/ohlc/nflx.csv"
+    load_job = client.load_table_from_uri(uri, table_ref, job_config = job_config)
+    
+    return None
 
 
 def ingest(ticker,bucket):

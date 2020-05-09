@@ -23,6 +23,14 @@ def update(value):
     ingest(ticker,bucket)
     return ticker + ' data loading to ' + bucket
 
+@app.route('/update_all')
+def update_all():
+    """Loads histupdateorical stock data into bucket."""
+    ticker = 'tsla'
+    bucket = "tax-loss-harvesting.appspot.com"
+    ingest(ticker,bucket)
+    return 'all stock data from the sp 500 loaded into ' + bucket
+
 @app.route('/name/<value>')
 def name(value):
     val = {'value': value}
